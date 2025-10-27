@@ -18,6 +18,11 @@ app.use(express.json());
 
 // --- Database Connection ---
 const connectDB = async () => {
+  if (!MONGO_URI) {
+    console.error('MongoDB URI is not defined in environment variables');
+    process.exit(1);
+  }
+  
   try {
     await mongoose.connect(MONGO_URI);
     console.log('MongoDB connected successfully! 🚀');
