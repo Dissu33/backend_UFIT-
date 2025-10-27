@@ -12,6 +12,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_DB_URI;
 
+// Convert PORT to number
+const portNumber = typeof PORT === 'string' ? parseInt(PORT, 10) : PORT;
+
 // --- Middleware ---
 app.use(cors()); 
 app.use(express.json()); 
@@ -43,6 +46,6 @@ app.get('/', (req, res) => {
 });
 
 // --- Server Start ---
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(portNumber, '0.0.0.0', () => {
+  console.log(`Server running on port ${portNumber}`);
 });
